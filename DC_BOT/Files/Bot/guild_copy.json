@@ -1,0 +1,36 @@
+{
+  "serverinfo": {
+    "?public": false,
+    "prefix": "++",
+    "language": "en",
+    "?premium": false
+  },
+
+  "moderation": {
+    "admin_roles": [],
+    "mod_roles": [],
+    "muted_role_id": null
+  },
+
+  "member_join": {
+    "guild": {
+      "basic": {
+        "?activate": false,
+        "description": null,
+        "channel": null
+      },
+
+      "extended": {
+        "color": null,
+        "thumpnail": false,
+        "title": null
+      }
+
+    },
+    "member": {
+      "basic": {
+
+      }
+    }
+  }
+}
