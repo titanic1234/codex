@@ -33,13 +33,15 @@ client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 client.slash = new Discord.Collection();
 client.admin = new Discord.Collection();
-
+client.website = new Discord.Collection();
 
 
 const commandFiles = fs.readdirSync('./src/commands/').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./src/events/').filter(file => file.endsWith('.js'));
 const slashFiles = fs.readdirSync('./src/slash/').filter(file => file.endsWith('.js'));
 const adminFiles = fs.readdirSync('./src/admin/').filter(file => file.endsWith('.js'));
+const websiteFiles = fs.readdirSync('../WEBSITE/').filter(file => file.endsWith('.js'));
+
 
 for (const file of commandFiles){
     const command = require(`./src/commands/${file}`);
@@ -64,11 +66,19 @@ for (const file of adminFiles){
     client.admin.set(command.data.name, command);
 }
 
+for (const file of websiteFiles){
+    const command = require(`../WEBSITE/${file}`);
+    client.website.set(command.name, command);
+}
+
 
 client.once('ready', async () => {
     console.log(`==========================================`);
     console.log(`Eingeloggt als ${client.user.tag} auf ${client.guilds.cache.size} Servern.`);
     console.log(`==========================================`);
+
+
+    await client.website.get("website").execute(client);
 });
 
 
@@ -138,6 +148,8 @@ client.on('messageCreate', async message => {
 
 
 });
+
+
 
 
 
